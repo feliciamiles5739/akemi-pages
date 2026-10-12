@@ -11,7 +11,6 @@
     --line:#e3e7ec; --accent:#2563eb; --accent-ink:#ffffff;
     --chip:#eef2f7; --ok:#0f9d58; --warn:#b4690e; --code:#eef1f5;
   }
-  :root:not([data-theme="light"]) { }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --bg:#0f1216; --card:#171b21; --ink:#e8ebef; --muted:#9aa4b2;
@@ -54,12 +53,9 @@
     padding:8px 14px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
   button.copy:active{transform:translateY(1px)}
   button.copy.done{background:var(--ok)}
-  .tag{display:inline-block;background:var(--chip);color:var(--muted);font-size:12px;
-    padding:2px 9px;border-radius:999px;margin-left:36px;margin-top:2px}
   .note{margin:10px 0 0 36px;font-size:14px;color:var(--muted)}
   .note b{color:var(--ink)}
   .warn{color:var(--warn)}
-  .backup summary{cursor:pointer;font-weight:600;font-size:15px;margin-left:36px;color:var(--muted)}
   .done-box{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
     border-radius:12px;padding:16px 18px;margin-top:24px}
   .done-box h2{font-size:17px;margin:0 0 6px}
@@ -70,21 +66,21 @@
 <div class="wrap">
   <header>
     <h1>Akemi — get the pages into Google</h1>
-    <p class="lede"><b>What this is:</b> we have <b>42 Akemi pages</b> live on Amazon (an Amazon S3 web address). Google knows they exist but hasn't added most of them to search yet. Your job: ask Google to crawl them, then watch them get added.</p>
-    <p class="lede" style="margin-top:6px">This is <b>only</b> about those Amazon pages — it has nothing to do with any other Akemi website. Everything you do is inside Google Search Console.</p>
+    <p class="lede"><b>What this is:</b> we have <b>42 Akemi pages</b> live on an Amazon web address. Google knows they exist but hasn't added most of them to search yet. Your job: ask Google to crawl them, then watch them get added.</p>
+    <p class="lede" style="margin-top:6px">This is <b>only</b> about those Amazon pages — nothing to do with any other Akemi website. Everything you do is inside <b>Google Search Console</b>.</p>
   </header>
 
   <div class="why">
-    Work top to bottom. <b>Step 3 does the real work.</b> Steps 1–2 take two minutes, Step 4 you repeat every day or two until the number stops climbing. Each blue button copies the exact text you need — don't type these by hand.
+    Work top to bottom. <b>Step 3 is the real work</b> and you'll repeat it over a few days. Every blue button copies the exact text you need — don't type these by hand.
   </div>
 
   <!-- STEP 1 -->
   <section class="step">
     <h2><span class="num">1</span> Open Search Console &amp; pick the right property</h2>
-    <p class="sub">This is Google's dashboard for the pages.</p>
+    <p class="sub">Search Console is Google's dashboard for these pages.</p>
     <ul class="points">
-      <li>Open Search Console (button below), sign in as <b>alice3861wil@gmail.com</b>.</li>
-      <li>Top-left, click the property dropdown and choose the one that starts with <span class="mono">akemicoffeeboost.s3</span> (second button is the exact address).</li>
+      <li>Open Search Console (button below) and sign in as <b>alice3861wil@gmail.com</b>.</li>
+      <li>Top-left, click the property dropdown and choose the one that starts with <span class="mono">akemicoffeeboost.s3</span> (second button is the exact one).</li>
     </ul>
     <div class="copyrow">
       <span class="val" id="v-gsc">https://search.google.com/search-console</span>
@@ -98,47 +94,34 @@
 
   <!-- STEP 2 -->
   <section class="step">
-    <h2><span class="num">2</span> Check the sitemap is there</h2>
-    <p class="sub">The sitemap is the list of all 42 pages. It was already submitted — you're just confirming.</p>
+    <h2><span class="num">2</span> Check the page list (sitemap) is there</h2>
+    <p class="sub">The "sitemap" is just Google's list of all 42 pages. It was already added — you're only confirming it.</p>
     <ul class="points">
       <li>Left menu → <b>Sitemaps</b>.</li>
-      <li>You should see one row with status <b style="color:var(--ok)">Success</b>. If you see it — do nothing, go to Step 3.</li>
-      <li><b>Only if it's missing:</b> paste the text below into the "Add a new sitemap" box and click Submit.</li>
+      <li>You should see one row with status <b style="color:var(--ok)">Success</b>. If it's there — do nothing, go to Step 3.</li>
+      <li><b>Only if the list is empty:</b> paste the full address below into the "Add a new sitemap" box and click Submit. (This address also opens in a browser, so you can click it to check it works.)</li>
     </ul>
     <div class="copyrow">
-      <span class="val" id="v-sm">akemi-coffee-boost/sitemap.xml</span>
+      <span class="val" id="v-sm">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/sitemap.xml</span>
       <button class="copy" data-copy="v-sm">Copy sitemap</button>
     </div>
   </section>
 
   <!-- STEP 3 -->
   <section class="step">
-    <h2><span class="num">3</span> Ask Google to crawl every page (the tool)</h2>
-    <p class="sub">This is the part that actually gets them crawled. Our tool clicks through all 42 for you.</p>
+    <h2><span class="num">3</span> Ask Google to crawl each page</h2>
+    <p class="sub">You do this one page at a time, right inside Search Console. No other tool needed.</p>
     <ul class="points">
-      <li>Open the tool page (first button) and do its one-time install the first time only — it follows its own on-screen steps.</li>
-      <li>Keep Search Console open in one browser tab, the <b>priority list</b> (second button) in another.</li>
-      <li>Start it and leave it running — it types each page into Google's Inspect box and clicks <b>Request Indexing</b> on its own.</li>
+      <li>Open the <b>page list</b> (button below) in another tab — it has all 42 links, each with its own Copy button.</li>
+      <li>In Search Console, click the long bar at the very top that says <b>"Inspect any URL"</b>.</li>
+      <li>Paste one page address, press Enter, wait a few seconds, then click <b>"Request Indexing"</b>.</li>
+      <li>Repeat for the next page. Work down the whole list.</li>
     </ul>
     <div class="copyrow">
-      <span class="val" id="v-tool">https://gsc-auto-index.misc-e60a.workers.dev/</span>
-      <button class="copy" data-copy="v-tool">Copy tool link</button>
+      <span class="val" id="v-list">https://feliciamiles5739.github.io/akemi-pages/</span>
+      <button class="copy" data-copy="v-list">Copy page-list link</button>
     </div>
-    <div class="copyrow">
-      <span class="val" id="v-prio">https://gsc-auto-index.misc-e60a.workers.dev/priority/</span>
-      <button class="copy" data-copy="v-prio">Copy list link</button>
-    </div>
-    <p class="note"><span class="warn">If it says "quota exceeded":</span> that's normal — Google limits how many per day. Stop, and run it again tomorrow until the list is finished.</p>
-
-    <details class="backup" style="margin-top:14px">
-      <summary>Backup: if the tool won't run, do these 5 by hand</summary>
-      <p class="note" style="margin-left:0">In Search Console, click the long search box at the very top ("Inspect any URL"), paste one of these, press Enter, wait, then click <b>Request Indexing</b>. These are the 5 main money pages — the tool covers the other 37.</p>
-      <div class="copyrow" style="margin-left:0"><span class="val" id="m1">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/us/akemi-coffee-boost.html</span><button class="copy" data-copy="m1">Copy</button></div>
-      <div class="copyrow" style="margin-left:0"><span class="val" id="m2">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/uk/akemi-coffee-boost.html</span><button class="copy" data-copy="m2">Copy</button></div>
-      <div class="copyrow" style="margin-left:0"><span class="val" id="m3">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/au/akemi-coffee-boost.html</span><button class="copy" data-copy="m3">Copy</button></div>
-      <div class="copyrow" style="margin-left:0"><span class="val" id="m4">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/ca/akemi-coffee-boost.html</span><button class="copy" data-copy="m4">Copy</button></div>
-      <div class="copyrow" style="margin-left:0"><span class="val" id="m5">https://akemicoffeeboost.s3.us-east-1.amazonaws.com/akemi-coffee-boost/nz/akemi-coffee-boost.html</span><button class="copy" data-copy="m5">Copy</button></div>
-    </details>
+    <p class="note"><span class="warn">If it says "quota exceeded" or "you've reached your limit":</span> that's normal — Google only allows so many per day. Stop there and carry on tomorrow until all 42 are done.</p>
   </section>
 
   <!-- STEP 4 -->
@@ -146,18 +129,18 @@
     <h2><span class="num">4</span> Watch them get added (every 1–2 days)</h2>
     <p class="sub">Checking progress — repeat until the number stops rising.</p>
     <ul class="points">
-      <li>Left menu → <b>Pages</b> (under "Indexing"). Watch the <b>Indexed</b> number go up toward 42.</li>
-      <li>To check one page: paste its address in the top Inspect box — "URL is on Google" means it's in.</li>
-      <li><b>Don't expect it all on day one.</b> Some pages show in a few days, most within 2–4 weeks. Keep running Step 3 each day until the whole list is requested.</li>
+      <li>Left menu → <b>Pages</b> (under "Indexing"). Watch the <b>Indexed</b> number climb toward 42.</li>
+      <li>To check one page: paste its address in the top "Inspect any URL" bar — <b>"URL is on Google"</b> means it's in.</li>
+      <li><b>Don't expect it all on day one.</b> Some show in a few days, most within 2–4 weeks. Keep doing Step 3 each day until every page has been requested.</li>
     </ul>
   </section>
 
   <div class="done-box">
     <h2>✓ When you're finished</h2>
-    <p style="margin:0">The whole priority list has been requested, and the <b>Pages → Indexed</b> count has climbed and leveled off. Send Bob that number (e.g. "34 of 42 indexed"). That's the whole job.</p>
+    <p style="margin:0">All 42 pages have been requested (Step 3), and the <b>Pages → Indexed</b> count has climbed and leveled off. Send Bob that number (e.g. "34 of 42 indexed"). That's the whole job.</p>
   </div>
 
-  <footer>Internal — Akemi S3 pages · do not share outside the team</footer>
+  <footer>Internal — Akemi pages · do not share outside the team</footer>
 </div>
 
 <script>
